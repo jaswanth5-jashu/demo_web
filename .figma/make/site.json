@@ -1,0 +1,14 @@
+{
+  "title": "HYDH₂O | Pure Water in Pure Glass",
+  "description": "Experience HYDH₂O's premium beverage brand through an interactive website featuring 3D bottle previews, wholesale pricing calculator, and circular sustainability.",
+  "robots": {
+    "index": true
+  },
+  "icons": {
+    "icon": "/favicon.svg"
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

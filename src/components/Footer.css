@@ -1,0 +1,107 @@
+/* ==========================================================================
+   FOOTER SECTION
+   ========================================================================== */
+
+.footer {
+  padding: 80px 5vw 30px;
+  color: white;
+  background: #020611;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 9vw;
+  padding-bottom: 80px;
+}
+
+.footer-main > div:first-child p {
+  margin-top: 25px;
+  color: #8290af;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.footer-main nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 30px;
+  color: #b3bfd9;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+}
+
+.footer-contact > p {
+  margin: 0 0 16px;
+  color: #687897;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+}
+
+.footer-contact > a {
+  font-size: 18px;
+}
+
+.footer-contact > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.footer-contact > div a {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #2b3346;
+  border-radius: 50%;
+}
+
+.footer-bottom {
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #242a39;
+  color: #64708a;
+  font: 9px var(--mono);
+  text-transform: uppercase;
+}
+
+.footer-bottom div {
+  display: flex;
+  gap: 25px;
+}
+
+@media (max-width: 860px) {
+  .footer {
+    padding: 60px clamp(16px, 4vw, 32px) 24px;
+  }
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-bottom: 44px;
+  }
+  .footer-main > div:first-child p {
+    font-size: 17px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-main nav {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+  }
+  .footer-contact > a {
+    font-size: 16px;
+    word-break: break-all;
+  }
+  .footer-bottom div {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+  }
+}
+

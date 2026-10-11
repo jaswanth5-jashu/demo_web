@@ -1,0 +1,423 @@
+/* ==========================================================================
+   HOME / HERO SECTION
+   ========================================================================== */
+
+.hero {
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  background: linear-gradient(112deg, #021449 0%, #0637c6 48%, #0877ff 100%);
+  perspective: 1200px;
+}
+
+.waterfall {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+
+.waterfall-glow {
+  position: absolute;
+  inset: -15% -5% auto 43%;
+  height: 95%;
+  background: radial-gradient(ellipse at top, rgba(230,246,255,.9), rgba(86,176,255,.33) 28%, transparent 67%);
+  filter: blur(10px);
+}
+
+.water-sheet {
+  position: absolute;
+  top: -15%;
+  bottom: 9%;
+  width: 25%;
+  border-radius: 0 0 48% 42%;
+  transform: skewX(-5deg);
+  will-change: background-position;
+}
+
+.water-sheet--back {
+  right: 10%;
+  opacity: .4;
+  background: repeating-linear-gradient(93deg, transparent 0 8px, rgba(218,242,255,.32) 10px 12px, transparent 14px 24px), linear-gradient(90deg, transparent, rgba(195,230,255,.7), transparent);
+  background-size: 100% 210%;
+  animation: waterFall 2.6s linear infinite;
+  filter: blur(4px);
+}
+
+.water-sheet--front {
+  right: 19%;
+  width: 17%;
+  opacity: .72;
+  background: repeating-linear-gradient(88deg, transparent 0 5px, rgba(255,255,255,.48) 7px 9px, transparent 12px 19px), linear-gradient(90deg, transparent, rgba(183,229,255,.58), transparent);
+  background-size: 100% 180%;
+  animation: waterFall 1.7s linear infinite;
+  filter: blur(1px);
+}
+
+@keyframes waterFall {
+  to {
+    background-position: 0 180%;
+  }
+}
+
+.water-streams {
+  position: absolute;
+  inset: 0 5% 8% 47%;
+  transform: skewX(-4deg);
+}
+
+.water-streams span {
+  position: absolute;
+  top: -30%;
+  width: 2px;
+  height: 62%;
+  background: linear-gradient(transparent, rgba(255,255,255,.75), transparent);
+  filter: blur(.3px);
+  animation: streamDrop 2.2s linear infinite;
+}
+
+.water-streams span:nth-child(1) { left: 5%; animation-delay: -.5s; }
+.water-streams span:nth-child(2) { left: 18%; height: 78%; animation-delay: -1.6s; }
+.water-streams span:nth-child(3) { left: 29%; animation-delay: -.9s; }
+.water-streams span:nth-child(4) { left: 44%; height: 88%; animation-delay: -1.9s; }
+.water-streams span:nth-child(5) { left: 57%; animation-delay: -.2s; }
+.water-streams span:nth-child(6) { left: 70%; height: 72%; animation-delay: -1.2s; }
+.water-streams span:nth-child(7) { left: 83%; animation-delay: -.7s; }
+.water-streams span:nth-child(8) { left: 96%; height: 83%; animation-delay: -1.5s; }
+
+@keyframes streamDrop {
+  from {
+    transform: translateY(-25%);
+    opacity: 0;
+  }
+  25% {
+    opacity: .9;
+  }
+  to {
+    transform: translateY(190%);
+    opacity: 0;
+  }
+}
+
+.water-mist {
+  position: absolute;
+  right: -5%;
+  bottom: -10%;
+  width: 68%;
+  height: 38%;
+  background: radial-gradient(ellipse, rgba(228,247,255,.6), rgba(77,166,255,.14) 45%, transparent 72%);
+  filter: blur(24px);
+  animation: mistBreath 4s ease-in-out infinite alternate;
+}
+
+@keyframes mistBreath {
+  to {
+    transform: translateX(-4%) scale(1.08);
+    opacity: .7;
+  }
+}
+
+.splash-pool {
+  position: absolute;
+  right: 3%;
+  bottom: 4%;
+  width: 49%;
+  height: 18%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(220,245,255,.55), rgba(46,137,255,.18) 48%, transparent 70%);
+  transform: rotateX(68deg);
+}
+
+.splash-pool i {
+  position: absolute;
+  inset: 20%;
+  border: 1px solid rgba(255,255,255,.54);
+  border-radius: 50%;
+  animation: splashRing 2.8s ease-out infinite;
+}
+
+.splash-pool i:nth-child(2) { animation-delay: -.9s; }
+.splash-pool i:nth-child(3) { animation-delay: -1.8s; }
+
+@keyframes splashRing {
+  from {
+    transform: scale(.3);
+    opacity: .9;
+  }
+  to {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: .11;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 3;
+  padding: 25vh 5vw 8vh;
+  width: 64%;
+}
+
+.hero h1 {
+  font-size: clamp(70px, 10.5vw, 175px);
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -.075em;
+  line-height: .84;
+  text-transform: uppercase;
+}
+
+.hero h1 span {
+  display: block;
+  margin-left: 8vw;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255,255,255,.72);
+}
+
+.hero-intro {
+  max-width: 470px;
+  margin: 34px 0 0 8.5vw;
+  color: rgba(255,255,255,.76);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin: 34px 0 0 8.5vw;
+}
+
+.hero-product {
+  position: absolute;
+  z-index: 2;
+  right: 5vw;
+  top: clamp(145px, 18vh, 185px);
+  width: min(38vw, 460px);
+  height: min(68vh, 580px);
+  transform-style: preserve-3d;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottle-3d {
+  position: relative;
+  width: 100%;
+  height: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.bottle-3d::before {
+  content: "";
+  position: absolute;
+  inset: 12% 24% 14%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(140,225,255,.32), rgba(15,115,255,.09) 60%, transparent 80%);
+  filter: blur(30px);
+  transform: translateZ(-35px);
+}
+
+.bottle-3d img {
+  height: 100%;
+  width: auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 32px rgba(0,10,55,.48)) contrast(1.07);
+  user-select: none;
+  pointer-events: none;
+}
+
+.bottle-3d--tall {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(35px) rotateY(-5deg) rotateZ(1deg);
+  animation: floatTall 5s ease-in-out infinite;
+}
+
+@keyframes floatTall {
+  0%, 100% {
+    transform: translateZ(35px) rotateY(-5deg) rotateZ(1deg) translateY(0);
+  }
+  50% {
+    transform: translateZ(55px) rotateY(-1deg) rotateZ(0deg) translateY(-12px);
+  }
+}
+
+.bottle-shadow {
+  position: absolute;
+  left: 22%;
+  right: 22%;
+  bottom: 2%;
+  height: 8%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,13,68,.55), transparent 70%);
+  filter: blur(18px);
+  transform: rotateX(70deg) translateZ(-50px);
+}
+
+.product-chip {
+  position: absolute;
+  z-index: 6;
+  padding: 7px 13px;
+  border: 1px solid var(--white-line);
+  background: rgba(255,255,255,.14);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  box-shadow: 0 4px 18px rgba(0,8,30,.25);
+}
+
+.chip-top {
+  right: 2%;
+  top: 16%;
+}
+
+.chip-bottom {
+  left: -2%;
+  bottom: 14%;
+}
+
+.hero-index {
+  position: absolute;
+  left: 3.2vw;
+  bottom: 4vh;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 10px var(--mono);
+}
+
+.index-line {
+  width: 72px;
+  height: 1px;
+  background: rgba(255,255,255,.5);
+}
+
+.hero-scroll {
+  position: absolute;
+  right: 3vw;
+  bottom: 4vh;
+  margin: 0;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+@media (max-width: 1050px) {
+  .hero-copy {
+    width: 65%;
+  }
+  .hero-product {
+    right: 2vw;
+    width: 38vw;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  .waterfall {
+    opacity: .75;
+  }
+  .hero-copy {
+    width: 100%;
+    padding: 110px 20px 0;
+    z-index: 4;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 13vw, 76px);
+    line-height: 0.9;
+  }
+  .hero h1 span {
+    margin-left: 0;
+  }
+  .hero-intro {
+    margin: 20px 0 0;
+    max-width: 100%;
+    font-size: 14.5px;
+  }
+  .hero-actions {
+    margin: 24px 0 0;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero-product {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-width: 320px;
+    height: 380px;
+    margin: 36px auto 0;
+    z-index: 3;
+  }
+  .water-sheet--back {
+    right: -10%;
+    width: 60%;
+  }
+  .water-sheet--front {
+    right: 15%;
+    width: 36%;
+  }
+  .water-streams {
+    left: 15%;
+    right: 0;
+  }
+  .product-chip,
+  .hero-index,
+  .hero-scroll {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-copy {
+    padding-top: 95px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 12vw, 56px);
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-actions .button {
+    width: 100%;
+  }
+  .hero-product {
+    height: 320px;
+    max-width: 270px;
+    margin-top: 24px;
+  }
+}
+
+

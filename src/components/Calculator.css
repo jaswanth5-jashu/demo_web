@@ -1,0 +1,228 @@
+/* ==========================================================================
+   CALCULATOR SECTION
+   ========================================================================== */
+
+.calculator {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 8vw;
+  color: white;
+  background: var(--blue-night);
+}
+
+.calculator::before {
+  content: "";
+  position: absolute;
+  width: 55vw;
+  aspect-ratio: 1;
+  left: -25vw;
+  bottom: -30vw;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6vw rgba(6, 71, 245, 0.09), 0 0 0 13vw rgba(6, 71, 245, 0.07);
+}
+
+.calculator-intro {
+  position: relative;
+  z-index: 1;
+}
+
+.calculator-intro h2 {
+  margin-bottom: 35px;
+}
+
+.calculator-intro > p:not(.eyebrow) {
+  max-width: 450px;
+  color: #aab9e1;
+  line-height: 1.7;
+}
+
+.price-note,
+.placeholder-note {
+  display: block;
+  margin-top: 30px;
+  color: #8492b8;
+  font: 9px/1.5 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+
+.calculator-panel {
+  position: relative;
+  z-index: 1;
+  padding: 46px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 26px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+}
+
+.field-group {
+  margin-bottom: 30px;
+}
+
+.field-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 13px;
+  color: #65708a;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+}
+
+.min-order-pill {
+  font: 600 9px var(--mono);
+  color: var(--blue);
+  background: #e8f0fe;
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.choice-grid button {
+  min-height: 52px;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #dce3f1;
+  background: white;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.choice-grid button.is-active {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: #edf3ff;
+}
+
+.choice-price {
+  font: 500 11px var(--mono);
+  color: #64708b;
+}
+
+.choice-grid button.is-active .choice-price {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.quantity-control {
+  height: 64px;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  align-items: center;
+  border: 1px solid #dce3f1;
+  border-radius: 12px;
+}
+
+.quantity-control button {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.quantity-control button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.quantity-control strong {
+  text-align: center;
+  font-size: 24px;
+}
+
+.estimate {
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line);
+}
+
+.estimate span {
+  display: block;
+  margin-bottom: 5px;
+  color: #65708a;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+}
+
+.estimate strong {
+  font-size: 30px;
+  display: flex;
+  align-items: baseline;
+}
+
+.tax-suffix {
+  font-size: 13px;
+  font-weight: 500;
+  color: #65708a;
+  margin-left: 5px;
+  text-transform: uppercase;
+}
+
+.min-order-subtext {
+  display: block;
+  margin-top: 4px;
+  font: 9px var(--mono);
+  color: #8492b8;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+@media (max-width: 900px) {
+  .calculator {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .calculator-panel {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 580px) {
+  .calculator-panel {
+    padding: 24px 16px;
+    border-radius: 18px;
+  }
+  .choice-grid {
+    gap: 6px;
+  }
+  .choice-grid button {
+    min-height: 48px;
+    padding: 0 10px;
+    font-size: 13px;
+  }
+  .choice-price {
+    font-size: 10px;
+  }
+  .quantity-control {
+    height: 54px;
+    grid-template-columns: 50px 1fr 50px;
+  }
+  .estimate {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .estimate .button {
+    width: 100%;
+  }
+}
+
+

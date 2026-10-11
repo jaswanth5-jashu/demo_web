@@ -1,0 +1,379 @@
+/* ==========================================================================
+   FEEDBACK & REVIEWS SECTION
+   ========================================================================== */
+
+.feedback {
+  min-height: 100vh;
+  color: white;
+  background: radial-gradient(circle at 85% 10%, #1473ff 0, transparent 30%), linear-gradient(145deg, var(--blue-deep), var(--blue-night) 60%);
+}
+
+.feedback::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .13;
+  background: url("/assets/hydh2o-abstract-blue.png") center / cover;
+  mix-blend-mode: screen;
+}
+
+.feedback-ripple {
+  position: absolute;
+  right: -18vw;
+  top: 8%;
+  width: 55vw;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6vw rgba(255, 255, 255, 0.035), 0 0 0 12vw rgba(255, 255, 255, 0.025);
+  animation: ripple 4s ease-in-out infinite alternate;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(1.1);
+    opacity: .35;
+  }
+}
+
+.feedback-heading {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 60px;
+}
+
+.feedback-heading h2 {
+  font-size: clamp(64px, 9vw, 140px);
+}
+
+.feedback-heading > p:last-child {
+  margin: 22px 0 0;
+  color: #bfcef2;
+  font-size: 18px;
+}
+
+.feedback-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.5fr .7fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.feedback-form,
+.reviews {
+  padding: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(22px);
+  border-radius: 26px;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.feedback-form fieldset {
+  margin: 0 0 32px;
+  padding: 0;
+  border: 0;
+}
+
+.feedback-form legend {
+  margin-bottom: 14px;
+  font: 500 10px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.stars {
+  display: flex;
+  gap: 5px;
+}
+
+.stars button {
+  padding: 5px;
+  color: rgba(255, 255, 255, 0.35);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: transform .2s, color .2s;
+}
+
+.stars button:hover {
+  transform: translateY(-5px) rotate(-8deg) scale(1.15);
+}
+
+.stars svg {
+  width: 34px;
+  height: 34px;
+}
+
+.stars .is-filled {
+  color: #d9e8ff;
+  fill: #d9e8ff;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.45));
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.category-list button {
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #cad8f9;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  font: 10px var(--mono);
+  cursor: pointer;
+}
+
+.category-list button.is-active {
+  color: var(--blue-night);
+  background: white;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.feedback-form input::placeholder,
+.feedback-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.feedback-form label {
+  display: block;
+  margin-bottom: 24px;
+  font: 500 10px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.feedback-form label span {
+  color: #94a8d5;
+}
+
+.feedback-identity {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.recommend {
+  width: 100%;
+  padding: 15px 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: transparent;
+  border-radius: 13px;
+  cursor: pointer;
+}
+
+.recommend > span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+}
+
+.recommend i {
+  width: 42px;
+  height: 23px;
+  padding: 3px;
+  display: block;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 20px;
+}
+
+.recommend b {
+  display: block;
+  width: 17px;
+  height: 17px;
+  background: white;
+  border-radius: 50%;
+  transition: transform .3s;
+}
+
+.recommend.is-active i {
+  background: #75a5ff;
+}
+
+.recommend.is-active b {
+  transform: translateX(19px);
+}
+
+.submit-feedback {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.submit-feedback:disabled {
+  opacity: .7;
+  cursor: wait;
+}
+
+.form-error {
+  color: #ffe0e0;
+  font: 10px var(--mono);
+}
+
+.reviews article {
+  padding: 25px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.reviews article > svg {
+  width: 22px;
+  color: #75a5ff;
+}
+
+.reviews article > p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.reviews article footer {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+}
+
+.reviews article footer > span {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: var(--blue-night);
+  background: white;
+  border-radius: 50%;
+  font: 9px var(--mono);
+}
+
+.reviews footer strong,
+.reviews footer small {
+  display: block;
+}
+
+.reviews footer strong {
+  font-size: 11px;
+}
+
+.reviews footer small {
+  margin-top: 3px;
+  color: #91a8da;
+  font: 9px var(--mono);
+  text-transform: uppercase;
+}
+
+.review-disclaimer {
+  color: #91a8da;
+  font: 9px/1.5 var(--mono);
+  text-transform: uppercase;
+}
+
+.feedback-success {
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.success-rings {
+  width: 84px;
+  height: 84px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 30px;
+  color: var(--blue);
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 16px rgba(255, 255, 255, 0.08), 0 0 0 34px rgba(255, 255, 255, 0.04);
+  animation: successWave 1.6s ease-out infinite;
+}
+
+@keyframes successWave {
+  70%, 100% {
+    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0), 0 0 0 55px rgba(255, 255, 255, 0);
+  }
+}
+
+.feedback-success h3 {
+  margin: 4px 0 12px;
+  font-size: clamp(40px, 6vw, 75px);
+  text-transform: uppercase;
+  letter-spacing: -.06em;
+}
+
+.feedback-success > p:not(.eyebrow) {
+  color: #b9c9eb;
+}
+
+.feedback-success .button {
+  margin-top: 22px;
+}
+
+@media (max-width: 860px) {
+  .feedback-heading h2 {
+    font-size: clamp(38px, 9vw, 68px);
+  }
+  .feedback-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .feedback-form,
+  .reviews {
+    padding: clamp(22px, 5vw, 36px) clamp(16px, 4vw, 28px);
+    border-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .feedback-identity {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .stars {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback {
+    padding: 70px 16px;
+  }
+  .feedback-heading {
+    margin-bottom: 36px;
+  }
+  .stars button {
+    padding: 3px;
+  }
+  .stars svg {
+    width: 28px;
+    height: 28px;
+  }
+  .category-list button {
+    padding: 9px 12px;
+    font-size: 9px;
+  }
+  .reviews article > p {
+    font-size: 16px;
+  }
+  .submit-feedback {
+    font-size: 11px;
+    padding: 16px 20px;
+  }
+}
+

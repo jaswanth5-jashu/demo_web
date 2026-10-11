@@ -1,0 +1,115 @@
+/* ==========================================================================
+   SUSTAINABILITY SECTION
+   ========================================================================== */
+
+.sustainability-section {
+  background: radial-gradient(circle at 50% 50%, #151d38 0%, #0c1224 85%);
+  color: #ffffff;
+  padding: clamp(90px, 12vh, 140px) 5vw;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.sustainability-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sustainability-title {
+  font-family: var(--serif) !important;
+  font-weight: 400 !important;
+  font-size: clamp(48px, 6.2vw, 84px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.01em !important;
+  text-transform: none !important;
+  color: #ffffff !important;
+  margin: 16px 0 24px !important;
+}
+
+.sustainability-optical-ring {
+  position: absolute;
+  width: clamp(440px, 52vw, 800px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 140px rgba(6, 71, 245, 0.3), inset 0 0 100px rgba(6, 71, 245, 0.22);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sustainability-optical-ring::before {
+  content: "";
+  position: absolute;
+  inset: -36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  filter: blur(2px);
+}
+
+.sustainability-lead {
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.6;
+  color: #a5b4d4;
+  max-width: 580px;
+  margin: 22px auto 0;
+  text-align: center;
+}
+
+.sustainability-tagline {
+  display: block;
+  margin: 32px 0 36px;
+  font: 600 12px var(--mono);
+  letter-spacing: 0.16em;
+  color: #dfbe7d;
+  text-transform: uppercase;
+}
+
+.sustainability-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .sustainability-section {
+    padding: 75px 20px;
+  }
+  .sustainability-title {
+    font-size: clamp(34px, 8.5vw, 52px) !important;
+    margin: 14px 0 18px !important;
+  }
+  .sustainability-optical-ring {
+    width: min(88vw, 360px);
+  }
+  .sustainability-lead {
+    font-size: 14.5px;
+    margin: 0 auto 24px;
+  }
+  .sustainability-tagline {
+    margin: 22px 0 28px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+  .sustainability-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    gap: 12px;
+  }
+  .sustainability-actions .button {
+    width: 100%;
+  }
+}
+
+
