@@ -1,5 +1,15 @@
-import { ArrowDown, ArrowUp, Calendar, Camera, Clock, MapPin, Sparkles } from "lucide-react";
-import { useState } from "react";
+import {
+  ArrowDown,
+  ArrowUp,
+  Calendar,
+  Camera,
+  Clock,
+  MapPin,
+  Maximize2,
+  Sparkles,
+  X,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 import "./Gallery.css";
 
 const gallery = [
@@ -18,6 +28,21 @@ const gallery = [
     alt: "Abstract cobalt water texture",
     kind: "texture",
   },
+  {
+    src: "https://images.unsplash.com/photo-1781754053347-af4594f67a83?auto=format&fit=crop&w=900&q=85",
+    alt: "Blue pool lifestyle",
+    kind: "photo",
+  },
+  {
+    src: "/assets/hydh2o-bottle-tall.png",
+    alt: "HYDH₂O tall glass bottle",
+    kind: "product",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1679310290110-8aecd427d033?auto=format&fit=crop&w=900&q=85",
+    alt: "Bottles beside a pool",
+    kind: "photo",
+  },
 ];
 
 type TimelineMoment = {
@@ -31,13 +56,13 @@ type TimelineMoment = {
 };
 
 const TIMELINE_MOMENTS: TimelineMoment[] = [
-  /*{
+  {
     date: "OCTOBER 2026",
     badge: "Hospitality",
     title: "Luxury Suite & Villa Rollouts",
     desc: "Curated 750ml Column bottles in bespoke metal trays across premier boutique hotel suites in Goa & Hyderabad.",
     location: "Taj & Private Luxury Villas",
-    image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=85",
+    image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=85",
     kind: "photo",
   },
   {
@@ -46,7 +71,7 @@ const TIMELINE_MOMENTS: TimelineMoment[] = [
     title: "Summer Gala & Tasting Bar",
     desc: "Custom label branded glass bottles poured chilled with fresh botanicals for 400+ attendees.",
     location: "The Glasshouse Pavilion",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85",
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85",
     kind: "photo",
   },
   {
@@ -55,7 +80,7 @@ const TIMELINE_MOMENTS: TimelineMoment[] = [
     title: "Fine Dining Table Rituals",
     desc: "Replacing generic plastic with the sculptural Curve on white linen tablecloths in farm-to-table bistros.",
     location: "Artisan Cafes & Fine Dining",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=85",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85",
     kind: "photo",
   },
   {
@@ -73,7 +98,7 @@ const TIMELINE_MOMENTS: TimelineMoment[] = [
     title: "Poolside & Beachside Flow",
     desc: "Chilled pure water in condensation-beaded glass bottles beside azure swimming retreats.",
     location: "The Palm Retreat & Lounges",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=85",
+    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85",
     kind: "photo",
   },
   {
@@ -84,7 +109,7 @@ const TIMELINE_MOMENTS: TimelineMoment[] = [
     location: "Design Studio, Hyderabad",
     image: "/assets/hydh2o-abstract-blue.png",
     kind: "texture",
-  },*/
+  },
 ];
 
 const CATEGORIES = ["All", "Hospitality", "Events", "Dining", "Sustainability", "Lifestyle"];
@@ -92,16 +117,40 @@ const CATEGORIES = ["All", "Hospitality", "Events", "Dining", "Sustainability", 
 export default function Gallery() {
   const [showTimeline, setShowTimeline] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [modalPhoto, setModalPhoto] = useState<TimelineMoment | null>(null);
 
-  const handleToggleTimeline = () => {
-    if (!showTimeline) {
-      setShowTimeline(true);
-      setTimeout(() => {
-        document.getElementById("gallery-timeline")?.scrollIntoView({ behavior: "smooth" });
-      }, 80);
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setModalPhoto(null);
+      }
+    };
+    if (modalPhoto) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
     } else {
-      document.getElementById("gallery-timeline")?.scrollIntoView({ behavior: "smooth" });
+      document.body.style.overflow = "";
     }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [modalPhoto]);
+
+  const handleOpenTimeline = () => {
+    setShowTimeline(true);
+    setTimeout(() => {
+      document.getElementById("gallery-timeline")?.scrollIntoView({ behavior: "smooth" });
+    }, 80);
+  };
+
+  const handleCloseTimeline = () => {
+    // Scroll back to gallery top and then close section
+    document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      setShowTimeline(false);
+    }, 350);
   };
 
   const filteredMoments = activeCategory === "All"
@@ -135,21 +184,31 @@ export default function Gallery() {
       <div className="gallery-more-bar reveal">
         <div className="gallery-more-inner">
           <p className="gallery-more-sub">Want to explore our visual journey & past moments?</p>
-          <button
-            type="button"
-            className="button button--ice gallery-more-btn"
-            onClick={handleToggleTimeline}
-            aria-expanded={showTimeline}
-          >
-            {showTimeline ? "Go to Gallery Time Section" : "View More Moments in Time"} <ArrowDown size={18} />
-          </button>
+          {!showTimeline ? (
+            <button
+              type="button"
+              className="button button--ice gallery-more-btn"
+              onClick={handleOpenTimeline}
+            >
+              Go to Gallery Time Section <ArrowDown size={18} />
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="button button--ice gallery-more-btn"
+              onClick={handleCloseTimeline}
+            >
+              Close Moments of Time Section <X size={18} />
+            </button>
+          )}
         </div>
       </div>
 
       {/* Gallery Time Section (Interactive Timeline) */}
       {showTimeline && (
         <div id="gallery-timeline" className="gallery-timeline-section">
-          <div className="timeline-header">
+          {/* Top Bar with Title and Close Button */}
+          <div className="timeline-top-nav">
             <div className="timeline-badge-wrap">
               <span className="timeline-tag">
                 <Clock size={13} /> GALLERY TIMELINE
@@ -158,12 +217,23 @@ export default function Gallery() {
                 <Sparkles size={13} /> ARCHIVE
               </span>
             </div>
+            <button
+              type="button"
+              className="timeline-close-pill"
+              onClick={handleCloseTimeline}
+              aria-label="Close timeline section"
+            >
+              <X size={15} /> Close Section
+            </button>
+          </div>
+
+          <div className="timeline-header">
             <h3 className="timeline-title">Moments In Time</h3>
             <p className="timeline-lead">
-              A curated timeline of HYDH₂O installations, boutique hospitality rollouts, luxury events, and table rituals.
+              Hover over any photo to reveal its story. Click any image to view it full screen.
             </p>
 
-            {/* Filter Pills (only shown if moments exist) */}
+            {/* Filter Pills */}
             {TIMELINE_MOMENTS.length > 0 && (
               <div className="timeline-filters">
                 {CATEGORIES.map((cat) => (
@@ -182,26 +252,45 @@ export default function Gallery() {
 
           {/* Timeline Cards Grid or Empty State */}
           {filteredMoments.length > 0 ? (
-            <div className="timeline-grid">
+            <div className="timeline-grid timeline-grid--interactive">
               {filteredMoments.map((item, idx) => (
-                <article className="timeline-card" key={idx}>
-                  <div className={`timeline-img-box timeline-img-box--${item.kind}`}>
+                <div
+                  className="timeline-photo-card"
+                  key={idx}
+                  onClick={() => setModalPhoto(item)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") setModalPhoto(item);
+                  }}
+                  aria-label={`View full photo: ${item.title}`}
+                >
+                  {/* Photo container */}
+                  <div className={`timeline-photo-wrap timeline-photo-wrap--${item.kind}`}>
                     <img src={item.image} alt={item.title} loading="lazy" />
-                    <span className="timeline-badge">{item.badge}</span>
+                    <span className="timeline-corner-badge">{item.badge}</span>
                   </div>
-                  <div className="timeline-body">
-                    <div className="timeline-meta">
-                      <span className="timeline-date">
+
+                  {/* Hover Overlay with Title and Description */}
+                  <div className="timeline-photo-hover-overlay">
+                    <div className="timeline-hover-top">
+                      <span className="timeline-hover-date">
                         <Calendar size={13} /> {item.date}
                       </span>
-                      <span className="timeline-location">
-                        <MapPin size={13} /> {item.location}
+                      <span className="timeline-hover-zoom">
+                        <Maximize2 size={15} /> Full View
                       </span>
                     </div>
-                    <h4 className="timeline-card-title">{item.title}</h4>
-                    <p className="timeline-desc">{item.desc}</p>
+
+                    <div className="timeline-hover-content">
+                      <h4 className="timeline-hover-title">{item.title}</h4>
+                      <p className="timeline-hover-desc">{item.desc}</p>
+                      <span className="timeline-hover-loc">
+                        <MapPin size={12} /> {item.location}
+                      </span>
+                    </div>
                   </div>
-                </article>
+                </div>
               ))}
             </div>
           ) : (
@@ -226,23 +315,71 @@ export default function Gallery() {
 
           {/* Bottom Actions */}
           <div className="timeline-bottom-actions">
-            <a
+            <button
+              type="button"
               className="button button--ice"
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
+              onClick={handleCloseTimeline}
             >
-              Follow on Instagram <Camera size={17} />
-            </a>
+              <X size={17} /> Close Moments of Time Section
+            </button>
             <button
               type="button"
               className="button button--ghost"
-              onClick={() => {
-                document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
-              }}
+              onClick={handleCloseTimeline}
             >
-              Back to Gallery Top <ArrowUp size={17} />
+              Gallery Top <ArrowUp size={17} />
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* FULL PICTURE OVERLAP MODAL / LIGHTBOX */}
+      {modalPhoto && (
+        <div
+          className="timeline-modal-overlay"
+          onClick={() => setModalPhoto(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={modalPhoto.title}
+        >
+          {/* Modal Container */}
+          <div
+            className="timeline-modal-container"
+            onClick={(e) => e.stopPropagation()} // Prevent backdrop click from closing when clicking inside
+          >
+            {/* Modal Close Button */}
+            <button
+              type="button"
+              className="timeline-modal-close"
+              onClick={() => setModalPhoto(null)}
+              aria-label="Close full view"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Full Image */}
+            <div className="timeline-modal-image-box">
+              <img
+                src={modalPhoto.image}
+                alt={modalPhoto.title}
+                className="timeline-modal-img"
+              />
+            </div>
+
+            {/* Modal Caption Footer */}
+            <div className="timeline-modal-caption">
+              <div className="timeline-modal-meta">
+                <span className="timeline-modal-tag">{modalPhoto.badge}</span>
+                <span className="timeline-modal-date">
+                  <Calendar size={13} /> {modalPhoto.date}
+                </span>
+                <span className="timeline-modal-loc">
+                  <MapPin size={13} /> {modalPhoto.location}
+                </span>
+              </div>
+              <h3 className="timeline-modal-title">{modalPhoto.title}</h3>
+              <p className="timeline-modal-desc">{modalPhoto.desc}</p>
+            </div>
           </div>
         </div>
       )}
