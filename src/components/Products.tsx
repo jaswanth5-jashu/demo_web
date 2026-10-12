@@ -13,15 +13,15 @@ export default function Products() {
   const [active, setActive] = useState(0);
   const products = [
     {
-      label: "The Curve",
-      image: "/assets/hydh2o-bottle-curve.png",
-      description: "A sculptural silhouette with a soft grip and timeless aluminum closure.",
-      pricing: "500 ml: ₹35 / 750 ml: ₹42 (+ tax)",
-    },
-    {
       label: "The Column",
       image: "/assets/hydh2o-bottle-tall.png",
       description: "Pure geometry and vertical wordmark energy, made for the table and the feed.",
+      pricing: "500 ml: ₹35 / 750 ml: ₹42 (+ tax)",
+    },
+    {
+      label: "The Curve",
+      image: "/assets/hydh2o-bottle-curve.png",
+      description: "A sculptural silhouette with a soft grip and timeless aluminum closure.",
       pricing: "500 ml: ₹35 / 750 ml: ₹42 (+ tax)",
     },
   ];
