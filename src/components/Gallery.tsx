@@ -18,24 +18,19 @@ const gallery = [
     alt: "Abstract cobalt water texture",
     kind: "texture",
   },
-  {
-    src: "https://images.unsplash.com/photo-1781754053347-af4594f67a83?auto=format&fit=crop&w=900&q=85",
-    alt: "Blue pool lifestyle",
-    kind: "photo",
-  },
-  {
-    src: "/assets/hydh2o-bottle-tall.png",
-    alt: "HYDH₂O tall glass bottle",
-    kind: "product",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1679310290110-8aecd427d033?auto=format&fit=crop&w=900&q=85",
-    alt: "Bottles beside a pool",
-    kind: "photo",
-  },
 ];
 
-const TIMELINE_MOMENTS = [
+type TimelineMoment = {
+  date: string;
+  badge: string;
+  title: string;
+  desc: string;
+  location: string;
+  image: string;
+  kind?: string;
+};
+
+const TIMELINE_MOMENTS: TimelineMoment[] = [
   /*{
     date: "OCTOBER 2026",
     badge: "Hospitality",
@@ -168,44 +163,66 @@ export default function Gallery() {
               A curated timeline of HYDH₂O installations, boutique hospitality rollouts, luxury events, and table rituals.
             </p>
 
-            {/* Filter Pills */}
-            <div className="timeline-filters">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  className={`timeline-filter-chip ${activeCategory === cat ? "is-active" : ""}`}
-                  onClick={() => setActiveCategory(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+            {/* Filter Pills (only shown if moments exist) */}
+            {TIMELINE_MOMENTS.length > 0 && (
+              <div className="timeline-filters">
+                {CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    className={`timeline-filter-chip ${activeCategory === cat ? "is-active" : ""}`}
+                    onClick={() => setActiveCategory(cat)}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Timeline Cards Grid */}
-          <div className="timeline-grid">
-            {filteredMoments.map((item, idx) => (
-              <article className="timeline-card" key={idx}>
-                <div className={`timeline-img-box timeline-img-box--${item.kind}`}>
-                  <img src={item.image} alt={item.title} loading="lazy" />
-                  <span className="timeline-badge">{item.badge}</span>
-                </div>
-                <div className="timeline-body">
-                  <div className="timeline-meta">
-                    <span className="timeline-date">
-                      <Calendar size={13} /> {item.date}
-                    </span>
-                    <span className="timeline-location">
-                      <MapPin size={13} /> {item.location}
-                    </span>
+          {/* Timeline Cards Grid or Empty State */}
+          {filteredMoments.length > 0 ? (
+            <div className="timeline-grid">
+              {filteredMoments.map((item, idx) => (
+                <article className="timeline-card" key={idx}>
+                  <div className={`timeline-img-box timeline-img-box--${item.kind}`}>
+                    <img src={item.image} alt={item.title} loading="lazy" />
+                    <span className="timeline-badge">{item.badge}</span>
                   </div>
-                  <h4 className="timeline-card-title">{item.title}</h4>
-                  <p className="timeline-desc">{item.desc}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+                  <div className="timeline-body">
+                    <div className="timeline-meta">
+                      <span className="timeline-date">
+                        <Calendar size={13} /> {item.date}
+                      </span>
+                      <span className="timeline-location">
+                        <MapPin size={13} /> {item.location}
+                      </span>
+                    </div>
+                    <h4 className="timeline-card-title">{item.title}</h4>
+                    <p className="timeline-desc">{item.desc}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="timeline-empty-state">
+              <div className="timeline-empty-icon">
+                <Camera size={34} />
+              </div>
+              <h4 className="timeline-empty-title">No photos are added</h4>
+              <p className="timeline-empty-desc">
+                Moments are currently being curated. Check back soon or follow our official feed for live updates.
+              </p>
+              <a
+                className="button button--ice"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Follow on Instagram <Camera size={16} />
+              </a>
+            </div>
+          )}
 
           {/* Bottom Actions */}
           <div className="timeline-bottom-actions">
