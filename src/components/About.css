@@ -27,16 +27,18 @@
 
 .about-art {
   position: relative;
-  min-height: 650px;
+  min-height: 600px;
   overflow: hidden;
   border-radius: 100% 100% 4px 4px;
+  box-shadow: 0 25px 60px rgba(0, 40, 150, 0.12);
+  background: #00227a;
 }
 
 .about-art img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(1.3) contrast(1.08);
+  object-position: center;
 }
 
 .about-art span {
@@ -104,7 +106,11 @@
     flex-direction: column;
     gap: 36px;
   }
+  .about-text {
+    order: 1;
+  }
   .about-art {
+    order: 2;
     min-height: 300px;
     height: 360px;
     margin-top: 24px;

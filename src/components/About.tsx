@@ -8,6 +8,13 @@ export default function About({
 }) {
   return (
     <section id="about" className="section about">
+      <div className="about-art reveal" aria-hidden="true">
+        <img
+          src="/assets/hydh2o-brand-blue.png"
+          alt="HYDH₂O Hydrating Water"
+          loading="lazy"
+        />
+      </div>
       <div className="about-text reveal">
         <p className="eyebrow">04 / Why HYDH₂O</p>
         <h2>Water was never the boring part.</h2>
@@ -29,10 +36,6 @@ export default function About({
             Why HYDH₂O <ArrowUpRight size={18} />
           </a>
         </div>
-      </div>
-      <div className="about-art reveal" aria-hidden="true">
-        <img src="/assets/hydh2o-abstract-blue.png" alt="" />
-        <span>H₂O</span>
       </div>
       <div className="manifesto reveal">
         <div><span>01</span><h3>Our mission</h3><p>Make exceptional hydration feel like culture, not a chore.</p></div>
