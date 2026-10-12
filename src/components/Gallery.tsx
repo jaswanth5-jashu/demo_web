@@ -1,4 +1,5 @@
-import { Camera } from "lucide-react";
+import { ArrowDown, ArrowUp, Calendar, Camera, Clock, MapPin, Sparkles } from "lucide-react";
+import { useState } from "react";
 import "./Gallery.css";
 
 const gallery = [
@@ -34,9 +35,87 @@ const gallery = [
   },
 ];
 
+const TIMELINE_MOMENTS = [
+  /*{
+    date: "OCTOBER 2026",
+    badge: "Hospitality",
+    title: "Luxury Suite & Villa Rollouts",
+    desc: "Curated 750ml Column bottles in bespoke metal trays across premier boutique hotel suites in Goa & Hyderabad.",
+    location: "Taj & Private Luxury Villas",
+    image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=85",
+    kind: "photo",
+  },
+  {
+    date: "AUGUST 2026",
+    badge: "Events",
+    title: "Summer Gala & Tasting Bar",
+    desc: "Custom label branded glass bottles poured chilled with fresh botanicals for 400+ attendees.",
+    location: "The Glasshouse Pavilion",
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85",
+    kind: "photo",
+  },
+  {
+    date: "JUNE 2026",
+    badge: "Dining",
+    title: "Fine Dining Table Rituals",
+    desc: "Replacing generic plastic with the sculptural Curve on white linen tablecloths in farm-to-table bistros.",
+    location: "Artisan Cafes & Fine Dining",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=85",
+    kind: "photo",
+  },
+  {
+    date: "APRIL 2026",
+    badge: "Sustainability",
+    title: "10,000 Bottles Re-circulated",
+    desc: "Celebrating our zero-waste milestone: closed-loop collection, medical-grade wash, and refill cycle.",
+    location: "Hyderabad Bottling Facility",
+    image: "/assets/hydh2o-bottle-tall.png",
+    kind: "product",
+  },
+  {
+    date: "FEBRUARY 2026",
+    badge: "Lifestyle",
+    title: "Poolside & Beachside Flow",
+    desc: "Chilled pure water in condensation-beaded glass bottles beside azure swimming retreats.",
+    location: "The Palm Retreat & Lounges",
+    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=85",
+    kind: "photo",
+  },
+  {
+    date: "LATE 2025",
+    badge: "Genesis",
+    title: "Genesis of HYDH₂O",
+    desc: "The idea took shape: water was never the boring part. Pure taste in glass that refuses to blend in.",
+    location: "Design Studio, Hyderabad",
+    image: "/assets/hydh2o-abstract-blue.png",
+    kind: "texture",
+  },*/
+];
+
+const CATEGORIES = ["All", "Hospitality", "Events", "Dining", "Sustainability", "Lifestyle"];
+
 export default function Gallery() {
+  const [showTimeline, setShowTimeline] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const handleToggleTimeline = () => {
+    if (!showTimeline) {
+      setShowTimeline(true);
+      setTimeout(() => {
+        document.getElementById("gallery-timeline")?.scrollIntoView({ behavior: "smooth" });
+      }, 80);
+    } else {
+      document.getElementById("gallery-timeline")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const filteredMoments = activeCategory === "All"
+    ? TIMELINE_MOMENTS
+    : TIMELINE_MOMENTS.filter((item) => item.badge === activeCategory);
+
   return (
     <section id="gallery" className="section gallery">
+      {/* 06 Photos Section Heading */}
       <div className="gallery-heading reveal">
         <div>
           <p className="eyebrow eyebrow--light">06 / @hydh2o</p>
@@ -46,6 +125,8 @@ export default function Gallery() {
           Follow the feed <Camera size={18} />
         </a>
       </div>
+
+      {/* 6 Photos Grid */}
       <div className="gallery-grid">
         {gallery.map((item, index) => (
           <figure className={`gallery-item gallery-item--${item.kind} reveal`} key={`${item.src}-${index}`}>
@@ -54,6 +135,100 @@ export default function Gallery() {
           </figure>
         ))}
       </div>
+
+      {/* View More Option Directly After 06 Photos */}
+      <div className="gallery-more-bar reveal">
+        <div className="gallery-more-inner">
+          <p className="gallery-more-sub">Want to explore our visual journey & past moments?</p>
+          <button
+            type="button"
+            className="button button--ice gallery-more-btn"
+            onClick={handleToggleTimeline}
+            aria-expanded={showTimeline}
+          >
+            {showTimeline ? "Go to Gallery Time Section" : "View More Moments in Time"} <ArrowDown size={18} />
+          </button>
+        </div>
+      </div>
+
+      {/* Gallery Time Section (Interactive Timeline) */}
+      {showTimeline && (
+        <div id="gallery-timeline" className="gallery-timeline-section">
+          <div className="timeline-header">
+            <div className="timeline-badge-wrap">
+              <span className="timeline-tag">
+                <Clock size={13} /> GALLERY TIMELINE
+              </span>
+              <span className="timeline-tag timeline-tag--alt">
+                <Sparkles size={13} /> ARCHIVE
+              </span>
+            </div>
+            <h3 className="timeline-title">Moments In Time</h3>
+            <p className="timeline-lead">
+              A curated timeline of HYDH₂O installations, boutique hospitality rollouts, luxury events, and table rituals.
+            </p>
+
+            {/* Filter Pills */}
+            <div className="timeline-filters">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  className={`timeline-filter-chip ${activeCategory === cat ? "is-active" : ""}`}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Timeline Cards Grid */}
+          <div className="timeline-grid">
+            {filteredMoments.map((item, idx) => (
+              <article className="timeline-card" key={idx}>
+                <div className={`timeline-img-box timeline-img-box--${item.kind}`}>
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                  <span className="timeline-badge">{item.badge}</span>
+                </div>
+                <div className="timeline-body">
+                  <div className="timeline-meta">
+                    <span className="timeline-date">
+                      <Calendar size={13} /> {item.date}
+                    </span>
+                    <span className="timeline-location">
+                      <MapPin size={13} /> {item.location}
+                    </span>
+                  </div>
+                  <h4 className="timeline-card-title">{item.title}</h4>
+                  <p className="timeline-desc">{item.desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Bottom Actions */}
+          <div className="timeline-bottom-actions">
+            <a
+              className="button button--ice"
+              href="https://instagram.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Follow on Instagram <Camera size={17} />
+            </a>
+            <button
+              type="button"
+              className="button button--ghost"
+              onClick={() => {
+                document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Back to Gallery Top <ArrowUp size={17} />
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

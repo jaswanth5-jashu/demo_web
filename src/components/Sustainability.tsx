@@ -32,7 +32,7 @@ export default function Sustainability({
               }
             }}
           >
-            Order HYDH₂O (₹35 & ₹42 + tax) <ArrowUpRight size={18} />
+            Order HYDH₂O<ArrowUpRight size={18} />
           </a>
           <a
             className="button button--ghost"

@@ -61,7 +61,7 @@ export default function Home() {
           />
         </div>
         <span className="bottle-shadow" aria-hidden="true" />
-        <span className="product-chip chip-top">Glass / 750 ml</span>
+        <span className="product-chip chip-top">Glass / 750 ml / 500 ml</span>
         <span className="product-chip chip-bottom">The Column / Pure Flow</span>
       </div>
       <div className="hero-index">
