@@ -10,6 +10,7 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import InstagramIcon from "./InstagramIcon";
 import "./Gallery.css";
 
 const gallery = [
@@ -165,8 +166,13 @@ export default function Gallery() {
           <p className="eyebrow eyebrow--light">06 / @hydh2o</p>
           <h2>Stay in<br />the flow.</h2>
         </div>
-        <a className="button button--ghost" href="https://instagram.com" target="_blank" rel="noreferrer">
-          Follow the feed <Camera size={18} />
+        <a
+          className="button button--ghost"
+          href="https://www.instagram.com/hydh2o?dlrf=MTY4aWtkOGVxZm5lMQ=="
+          target="_blank"
+          rel="noreferrer"
+        >
+          Follow @hydh2o <InstagramIcon size={18} />
         </a>
       </div>
 
@@ -304,11 +310,11 @@ export default function Gallery() {
               </p>
               <a
                 className="button button--ice"
-                href="https://instagram.com"
+                href="https://www.instagram.com/hydh2o?dlrf=MTY4aWtkOGVxZm5lMQ=="
                 target="_blank"
                 rel="noreferrer"
               >
-                Follow on Instagram <Camera size={16} />
+                Follow on Instagram <InstagramIcon size={16} />
               </a>
             </div>
           )}

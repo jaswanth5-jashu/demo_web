@@ -1,5 +1,6 @@
-import { Camera, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import BrandMark from "./BrandMark";
+import InstagramIcon from "./InstagramIcon";
 import { NAV_ITEMS } from "../constants/navigation";
 import "./Footer.css";
 
@@ -16,8 +17,20 @@ export default function Footer() {
         </nav>
         <div className="footer-contact">
           <p>Say hello</p>
-          <a href="mailto:hello@hydh2o.example">hello@hydh2o.example</a>
-          <div><a href="https://instagram.com" aria-label="Instagram"><Camera /></a><a href="https://wa.me/10000000000" aria-label="WhatsApp"><MessageCircle /></a></div>
+          <a href="mailto:hydh2o.info@gmail.com">hydh2o.info@gmail.com</a>
+          <div>
+            <a
+              href="https://www.instagram.com/hydh2o?dlrf=MTY4aWtkOGVxZm5lMQ=="
+              target="_blank"
+              rel="noreferrer"
+              aria-label="HYDH₂O Instagram"
+            >
+              <InstagramIcon size={20} />
+            </a>
+            <a href="https://wa.me/10000000000" aria-label="WhatsApp">
+              <MessageCircle />
+            </a>
+          </div>
         </div>
       </div>
       <div className="footer-bottom">
