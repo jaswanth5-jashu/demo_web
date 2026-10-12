@@ -85,7 +85,7 @@ export default function Calculator() {
           </div>
           <a
             className="button button--blue"
-            href={`https://wa.me/10000000000?text=${message}`}
+            href={`https://wa.me/919100356490?text=${message}`}
             target="_blank"
             rel="noreferrer"
           >

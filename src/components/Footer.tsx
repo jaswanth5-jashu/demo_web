@@ -27,7 +27,12 @@ export default function Footer() {
             >
               <InstagramIcon size={20} />
             </a>
-            <a href="https://wa.me/10000000000" aria-label="WhatsApp">
+            <a
+              href="https://wa.me/919100356490"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="WhatsApp HYDH₂O"
+            >
               <MessageCircle />
             </a>
           </div>

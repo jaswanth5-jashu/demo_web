@@ -129,14 +129,14 @@ export default function Contact() {
           <a href={`mailto:${ADMIN_EMAIL}`}>
             <Mail size={18} /> {ADMIN_EMAIL}
           </a>
+          <a href="https://wa.me/919100356490" target="_blank" rel="noreferrer">
+            <MessageCircle size={18} /> WhatsApp: +91 91003 56490
+          </a>
+          <a href="tel:+919100356490">
+            <Phone size={18} /> +91 91003 56490
+          </a>
           <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
             <InstagramIcon size={18} /> @hydh2o on Instagram
-          </a>
-          <a href="https://wa.me/10000000000" target="_blank" rel="noreferrer">
-            <MessageCircle size={18} /> WhatsApp HYDH₂O
-          </a>
-          <a href="tel:+10000000000">
-            <Phone size={18} /> +1 (000) 000-0000
           </a>
         </div>
 
